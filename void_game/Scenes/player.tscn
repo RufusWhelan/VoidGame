@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxupxtaa3tx5l"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_jb00m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bf1x"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_jb00m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5bf1x")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="NonVoid" type="ColorRect" parent="Sprite"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Void" type="ColorRect" parent="Sprite"]
+offset_left = -10.0
+offset_top = -3.0
+offset_right = 10.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 1)
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
